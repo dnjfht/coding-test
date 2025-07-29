@@ -1,11 +1,25 @@
-function solution(num_list) {
-//     let odd = "";
-//     let even = "";
+function solution(arr) {
+    // let even = "";
+    // let odd = "";
     
-//     num_list.forEach((num) => num % 2 === 0 ? even += num : odd += num);
-//     return Number(odd) + Number(even);
+    // for(let i = 0; i < arr.length; i++) {
+    //     if(arr[i] % 2) {
+    //         odd += arr[i]
+    //     } else {
+    //         even += arr[i]
+    //     }
+    // }
     
-    const oddStr = Number(num_list.filter((num) => num % 2 === 1).join(""));
-    const evenStr = Number(num_list.filter((num) => num % 2 === 0).join(""));
-    return oddStr + evenStr;
+    // arr.forEach((num) => num % 2 ? odd += num : even += num);
+    // return Number(even) + Number(odd);
+    
+    const {evens, odds} = arr.reduce(({evens, odds}, num) => {
+        if(num % 2) {
+            odds += num;
+        } else {
+            evens += num;
+        }
+        return {odds, evens};
+    }, {evens: "", odds: ""});
+    return Number(evens) + Number(odds);
 }
